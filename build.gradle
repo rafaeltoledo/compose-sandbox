@@ -1,0 +1,46 @@
+buildscript {
+  ext.versions = [
+    compose  : '1.0.0-beta01',
+    kotlin   : '1.4.31',
+    ktlint   : '0.40.0',
+    lifecycle: '2.3.0',
+    moshi    : '1.11.0',
+    okhttp   : '4.9.1',
+    retrofit : '2.9.0',
+  ]
+
+  repositories {
+    google()
+    mavenCentral()
+    jcenter()
+  }
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:7.0.0-alpha08'
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+  }
+}
+
+plugins {
+  id 'com.diffplug.spotless' version '5.10.2'
+}
+
+subprojects {
+  repositories {
+    google()
+    mavenCentral()
+    jcenter()
+  }
+
+  apply plugin: 'com.diffplug.spotless'
+  spotless {
+    kotlin {
+      target '**/*.kt'
+      targetExclude "$buildDir/**/*.kt"
+      targetExclude 'bin/**/*.kt'
+
+      ktlint versions.ktlint
+    }
+  }
+}
+
