@@ -11,6 +11,7 @@ data class Collection<T>(
 
 @JsonClass(generateAdapter = true)
 data class User(
+  @Json(name = "user_id") val id: Long,
   @Json(name = "display_name") val displayName: String,
   @Json(name = "profile_image") val profileImage: String,
   @Json(name = "location") val location: String?,

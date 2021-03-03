@@ -1,4 +1,4 @@
-package net.rafaeltoledo.sandbox.ui.screen.repositories
+package net.rafaeltoledo.sandbox.ui.screen.users
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
