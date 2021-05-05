@@ -1,35 +1,31 @@
 buildscript {
   ext.versions = [
-    compose  : '1.0.0-beta02',
-    kotlin   : '1.4.31',
-    ktlint   : '0.40.0',
-    lifecycle: '2.3.0',
-    moshi    : '1.11.0',
-    okhttp   : '4.9.1',
-    retrofit  : '2.9.0',
+    accompanist: '0.9.0',
+    compose    : '1.0.0-beta06',
+    kotlin     : '1.4.32',
+    ktlint     : '0.41.0',
+    lifecycle  : '2.4.0-alpha01',
+    moshi      : '1.12.0',
+    okhttp     : '4.9.1',
+    retrofit    : '2.9.0',
   ]
 
   repositories {
     google()
     mavenCentral()
-    // jcenter()
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:7.0.0-alpha09'
+    classpath 'com.android.tools.build:gradle:7.0.0-alpha15'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+    classpath 'com.diffplug.spotless:spotless-plugin-gradle:5.12.4'
   }
-}
-
-plugins {
-  id 'com.diffplug.spotless' version '5.11.0'
 }
 
 subprojects {
   repositories {
     google()
     mavenCentral()
-    // jcenter()
   }
 
   apply plugin: 'com.diffplug.spotless'

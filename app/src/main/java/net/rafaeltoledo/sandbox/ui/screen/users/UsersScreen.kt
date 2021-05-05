@@ -1,5 +1,6 @@
 package net.rafaeltoledo.sandbox.ui.screen.users
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,9 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.transform.CircleCropTransformation
-import dev.chrisbanes.accompanist.coil.CoilImage
-import dev.chrisbanes.accompanist.insets.navigationBarsPadding
-import dev.chrisbanes.accompanist.insets.statusBarsPadding
+import com.google.accompanist.coil.rememberCoilPainter
+import com.google.accompanist.insets.navigationBarsPadding
+import com.google.accompanist.insets.statusBarsPadding
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -62,13 +63,16 @@ fun UsersScreen(
                 )
               },
               icon = {
-                CoilImage(
-                  data = user.profileImage,
-                  contentDescription = null,
-                  requestBuilder = {
-                    transformations(CircleCropTransformation())
-                  }
-                )
+                  Image(
+                    painter = rememberCoilPainter(
+                      request = user.profileImage,
+                      requestBuilder = {
+                        transformations(CircleCropTransformation())
+                      },
+                      fadeIn = true,
+                    ),
+                    contentDescription = null,
+                  )
               },
             )
           }
