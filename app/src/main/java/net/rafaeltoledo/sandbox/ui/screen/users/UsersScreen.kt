@@ -13,8 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
-import com.google.accompanist.coil.rememberCoilPainter
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.insets.statusBarsPadding
 
@@ -64,12 +64,12 @@ fun UsersScreen(
               },
               icon = {
                   Image(
-                    painter = rememberCoilPainter(
-                      request = user.profileImage,
-                      requestBuilder = {
+                    painter = rememberImagePainter(
+                      data = user.profileImage,
+                      builder = {
                         transformations(CircleCropTransformation())
+                        crossfade(true)
                       },
-                      fadeIn = true,
                     ),
                     contentDescription = null,
                   )

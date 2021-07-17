@@ -71,24 +71,24 @@ android {
 }
 
 dependencies {
-  implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3'
+  implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1'
 
-  implementation 'androidx.core:core-ktx:1.5.0-rc02'
-  implementation 'androidx.appcompat:appcompat:1.3.0-rc01'
-  implementation 'androidx.activity:activity-compose:1.3.0-alpha07'
+  implementation 'androidx.core:core-ktx:1.7.0-alpha01'
+  implementation 'androidx.appcompat:appcompat:1.4.0-alpha03'
+  implementation 'androidx.activity:activity-compose:1.3.0-rc02'
 
   implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
   implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
-  implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha04'
+  implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07'
 
-  implementation 'androidx.navigation:navigation-compose:1.0.0-alpha10'
+  implementation 'androidx.navigation:navigation-compose:2.4.0-alpha04'
 
   implementation "androidx.compose.foundation:foundation:$versions.compose"
   implementation "androidx.compose.material:material:$versions.compose"
   implementation "androidx.compose.material:material-icons-extended:$versions.compose"
   implementation "androidx.compose.ui:ui-tooling:$versions.compose"
 
-  implementation 'com.google.android.material:material:1.4.0-alpha02'
+  implementation 'com.google.android.material:material:1.4.0'
 
   implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
   implementation "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
@@ -96,7 +96,7 @@ dependencies {
   implementation "com.squareup.okhttp3:okhttp:$versions.okhttp"
   implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttp"
 
-  implementation "com.google.accompanist:accompanist-coil:$versions.accompanist"
+  implementation "io.coil-kt:coil-compose:$versions.coil"
   implementation "com.google.accompanist:accompanist-insets:$versions.accompanist"
 
   debugImplementation "androidx.compose.ui:ui-tooling:$versions.compose"
@@ -104,8 +104,8 @@ dependencies {
 
   testImplementation 'junit:junit:4.13.2'
 
-  androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.2'
-  androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+  androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.3'
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
   coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 }
