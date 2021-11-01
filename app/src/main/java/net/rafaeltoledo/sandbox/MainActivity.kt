@@ -10,6 +10,7 @@ import androidx.core.view.WindowCompat
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.*
+import androidx.navigation.navArgument
 import com.google.accompanist.insets.ProvideWindowInsets
 import net.rafaeltoledo.sandbox.AppNavRoutes.USERS
 import net.rafaeltoledo.sandbox.AppNavRoutes.USER_DETAILS

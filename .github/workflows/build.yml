@@ -17,8 +17,9 @@ jobs:
       - name: Install JDK
         uses: actions/setup-java@v2
         with:
-          distribution: 'adopt'
+          distribution: 'temurin'
           java-version: '11'
+          cache: 'gradle'
       - name: Configure Gradle
         run: ./gradlew help
       - name: Build project
