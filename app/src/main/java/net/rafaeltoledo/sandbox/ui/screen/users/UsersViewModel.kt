@@ -7,7 +7,6 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import net.rafaeltoledo.sandbox.BuildConfig
 import net.rafaeltoledo.sandbox.data.StackOverflowApi
 import net.rafaeltoledo.sandbox.data.User
 import okhttp3.OkHttpClient
@@ -35,10 +34,7 @@ class RepositoriesViewModel : ViewModel() {
     val client = OkHttpClient.Builder()
       .addInterceptor(
         HttpLoggingInterceptor()
-          .setLevel(
-            if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
-            else HttpLoggingInterceptor.Level.NONE
-          )
+          .setLevel(HttpLoggingInterceptor.Level.BODY)
       )
       .build()
 

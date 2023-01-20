@@ -11,7 +11,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.*
 import androidx.navigation.navArgument
-import com.google.accompanist.insets.ProvideWindowInsets
 import net.rafaeltoledo.sandbox.AppNavRoutes.USERS
 import net.rafaeltoledo.sandbox.AppNavRoutes.USER_DETAILS
 import net.rafaeltoledo.sandbox.AppNavRoutes.USER_DETAILS_ID_KEY
@@ -31,9 +30,7 @@ class MainActivity : ComponentActivity() {
 
     setContent {
       AppTheme {
-        ProvideWindowInsets {
-          SandboxApp(viewModel)
-        }
+        SandboxApp(viewModel)
       }
     }
   }
