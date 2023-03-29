@@ -4,13 +4,18 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
-import androidx.navigation.compose.*
 import androidx.navigation.navArgument
+import com.google.accompanist.navigation.animation.AnimatedNavHost
+import com.google.accompanist.navigation.animation.composable
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import net.rafaeltoledo.sandbox.AppNavRoutes.USERS
 import net.rafaeltoledo.sandbox.AppNavRoutes.USER_DETAILS
 import net.rafaeltoledo.sandbox.AppNavRoutes.USER_DETAILS_ID_KEY
@@ -36,13 +41,16 @@ class MainActivity : ComponentActivity() {
   }
 }
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun SandboxApp(viewModel: RepositoriesViewModel) {
-  val navController = rememberNavController()
+  val navController = rememberAnimatedNavController()
 
   val actions = remember(navController) { AppNavActions(navController) }
-  NavHost(navController, startDestination = USERS) {
-    composable(USERS) {
+  AnimatedNavHost(navController, startDestination = USERS) {
+    composable(
+      USERS,
+    ) {
       UsersScreen(
         viewModel = viewModel,
         selectUser = actions.selectUser,
@@ -53,6 +61,12 @@ fun SandboxApp(viewModel: RepositoriesViewModel) {
       arguments = listOf(
         navArgument(USER_DETAILS_ID_KEY) { type = NavType.LongType }
       ),
+      enterTransition = {
+        slideIntoContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
+      },
+      exitTransition = {
+        slideOutOfContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
+      }
     ) {
       val arguments = requireNotNull(it.arguments)
       UserDetailsScreen(
