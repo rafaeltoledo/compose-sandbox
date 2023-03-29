@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -25,16 +25,17 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UsersScreen(
+  selectUser: (Long) -> Unit,
+  modifier: Modifier = Modifier,
   viewModel: RepositoriesViewModel = viewModel(),
-  selectUser: (Long) -> Unit
 ) {
   val state = viewModel.state.collectAsState().value
 
   Scaffold(
-    modifier = Modifier
+    modifier = modifier
       .navigationBarsPadding()
       .statusBarsPadding(),
   ) { paddingValues ->
@@ -52,10 +53,8 @@ fun UsersScreen(
         content = {
           items(state.users) { user ->
             ListItem(
-              Modifier.clickable {
-                selectUser.invoke(user.id)
-              },
-              text = {
+              modifier = Modifier.clickable { selectUser(user.id) },
+              headlineText = {
                 Text(
                   HtmlCompat.fromHtml(
                     user.displayName,
@@ -63,7 +62,7 @@ fun UsersScreen(
                   ).toString()
                 )
               },
-              secondaryText = {
+              supportingText = {
                 Text(
                   HtmlCompat.fromHtml(
                     user.location ?: "",
@@ -71,19 +70,19 @@ fun UsersScreen(
                   ).toString()
                 )
               },
-              icon = {
-                  AsyncImage(
-                    model = ImageRequest.Builder(LocalContext.current)
-                      .data(user.profileImage)
-                      .crossfade(true)
-                      .build(),
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.clip(CircleShape)
-                      .width(48.dp)
-                      .height(48.dp),
-                  )
-              },
+              leadingContent = {
+                AsyncImage(
+                  model = ImageRequest.Builder(LocalContext.current)
+                    .data(user.profileImage)
+                    .crossfade(true)
+                    .build(),
+                  contentDescription = null,
+                  contentScale = ContentScale.Crop,
+                  modifier = Modifier.clip(CircleShape)
+                    .width(48.dp)
+                    .height(48.dp),
+                )
+              }
             )
           }
         },
