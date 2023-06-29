@@ -20,8 +20,8 @@ import net.rafaeltoledo.sandbox.AppNavRoutes.USERS
 import net.rafaeltoledo.sandbox.AppNavRoutes.USER_DETAILS
 import net.rafaeltoledo.sandbox.AppNavRoutes.USER_DETAILS_ID_KEY
 import net.rafaeltoledo.sandbox.ui.screen.userdetails.UserDetailsScreen
-import net.rafaeltoledo.sandbox.ui.screen.users.UsersScreen
 import net.rafaeltoledo.sandbox.ui.screen.users.RepositoriesViewModel
+import net.rafaeltoledo.sandbox.ui.screen.users.UsersScreen
 import net.rafaeltoledo.sandbox.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
@@ -59,19 +59,19 @@ fun SandboxApp(viewModel: RepositoriesViewModel) {
     composable(
       "$USER_DETAILS/{$USER_DETAILS_ID_KEY}",
       arguments = listOf(
-        navArgument(USER_DETAILS_ID_KEY) { type = NavType.LongType }
+        navArgument(USER_DETAILS_ID_KEY) { type = NavType.LongType },
       ),
       enterTransition = {
         slideIntoContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(700))
       },
       exitTransition = {
         slideOutOfContainer(AnimatedContentScope.SlideDirection.Right, animationSpec = tween(700))
-      }
+      },
     ) {
       val arguments = requireNotNull(it.arguments)
       UserDetailsScreen(
         userId = arguments.getLong(USER_DETAILS_ID_KEY),
-        upPress = actions.upPress
+        upPress = actions.upPress,
       )
     }
   }

@@ -1,14 +1,14 @@
 buildscript {
   ext.versions = [
-    accompanist: '0.30.0',
-    coil       : '2.3.0',
-    compose    : '2023.03.00',
-    detekt     : '1.22.0',
-    kotlin     : '1.8.10',
-    ktlint     : '0.48.2',
+    accompanist: '0.30.1',
+    coil       : '2.4.0',
+    compose    : '2023.06.01',
+    detekt     : '1.23.0',
+    kotlin     : '1.8.22',
+    ktlint     : '0.49.1',
     lifecycle  : '2.6.1',
-    moshi      : '1.14.0',
-    okhttp     : '4.10.0',
+    moshi      : '1.15.0',
+    okhttp     : '4.11.0',
     retrofit   : '2.9.0',
   ]
 
@@ -18,9 +18,9 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:8.0.0-rc01'
+    classpath 'com.android.tools.build:gradle:8.0.2'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-    classpath 'com.diffplug.spotless:spotless-plugin-gradle:6.17.0'
+    classpath 'com.diffplug.spotless:spotless-plugin-gradle:6.19.0'
     classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$versions.detekt"
   }
 }

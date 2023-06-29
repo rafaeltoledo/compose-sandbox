@@ -11,7 +11,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.*
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -25,7 +28,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UsersScreen(
   selectUser: (Long) -> Unit,
@@ -54,20 +56,20 @@ fun UsersScreen(
           items(state.users) { user ->
             ListItem(
               modifier = Modifier.clickable { selectUser(user.id) },
-              headlineText = {
+              headlineContent = {
                 Text(
                   HtmlCompat.fromHtml(
                     user.displayName,
-                    HtmlCompat.FROM_HTML_MODE_COMPACT
-                  ).toString()
+                    HtmlCompat.FROM_HTML_MODE_COMPACT,
+                  ).toString(),
                 )
               },
-              supportingText = {
+              supportingContent = {
                 Text(
                   HtmlCompat.fromHtml(
                     user.location ?: "",
-                    HtmlCompat.FROM_HTML_MODE_COMPACT
-                  ).toString()
+                    HtmlCompat.FROM_HTML_MODE_COMPACT,
+                  ).toString(),
                 )
               },
               leadingContent = {
@@ -82,7 +84,7 @@ fun UsersScreen(
                     .width(48.dp)
                     .height(48.dp),
                 )
-              }
+              },
             )
           }
         },

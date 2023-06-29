@@ -34,7 +34,7 @@ class RepositoriesViewModel : ViewModel() {
     val client = OkHttpClient.Builder()
       .addInterceptor(
         HttpLoggingInterceptor()
-          .setLevel(HttpLoggingInterceptor.Level.BODY)
+          .setLevel(HttpLoggingInterceptor.Level.BODY),
       )
       .build()
 

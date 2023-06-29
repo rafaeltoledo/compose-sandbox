@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 fun UserDetailsScreen(
   userId: Long,
   upPress: () -> Unit,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
 ) {
   Scaffold(
     modifier = modifier,
@@ -36,9 +36,9 @@ fun UserDetailsScreen(
               contentDescription = null,
             )
           }
-        }
+        },
       )
-    }
+    },
   ) {
     Box(modifier = Modifier.padding(it))
   }

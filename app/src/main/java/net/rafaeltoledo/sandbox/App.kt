@@ -7,6 +7,6 @@ import java.security.Security
 class App : Application() {
 
   init {
-      Security.insertProviderAt(Conscrypt.newProvider(), 1)
+    Security.insertProviderAt(Conscrypt.newProvider(), 1)
   }
 }
