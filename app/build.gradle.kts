@@ -1,18 +1,19 @@
 plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.android)
+  alias(libs.plugins.kotlin.plugin.compose)
   alias(libs.plugins.lint.detekt)
   alias(libs.plugins.lint.spotless)
 }
 
 android {
-  compileSdk = 34
+  compileSdk = libs.versions.android.sdk.compile.get().toInt()
   namespace = "net.rafaeltoledo.sandbox"
 
   defaultConfig {
     applicationId = "net.rafaeltoledo.sandbox"
-    minSdk = 24
-    targetSdk = 34
+    minSdk = libs.versions.android.sdk.min.get().toInt()
+    targetSdk = libs.versions.android.sdk.target.get().toInt()
     versionCode = 1
     versionName = "0.0.1"
 
@@ -33,14 +34,6 @@ android {
 
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
     }
-  }
-
-  buildFeatures {
-    compose = true
-  }
-
-  composeOptions {
-    kotlinCompilerExtensionVersion = "1.5.11"
   }
 }
 
@@ -74,8 +67,6 @@ dependencies {
   debugImplementation(libs.androidx.compose.ui.tooling)
   debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-  implementation(libs.google.material)
-
   implementation(libs.retrofit)
   implementation(libs.retrofit.moshi)
   implementation(libs.moshi.kotlin)
@@ -84,9 +75,7 @@ dependencies {
   implementation(libs.conscrypt)
 
   implementation(libs.coil.compose)
-
-  implementation(libs.accompanist.navigation.animation)
-  implementation(libs.accompanist.insets.ui)
+  implementation(libs.coil.network.okhttp)
 
   testImplementation(libs.test.junit)
 
