@@ -1,19 +1,19 @@
 package net.rafaeltoledo.sandbox.data
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class Collection<T>(
-  @Json(name = "items") val items: List<T>,
-  @Json(name = "has_more") val hasMore: Boolean,
+  @SerialName("items") val items: List<T>,
+  @SerialName("has_more") val hasMore: Boolean,
 )
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class User(
-  @Json(name = "user_id") val id: Long,
-  @Json(name = "display_name") val displayName: String,
-  @Json(name = "profile_image") val profileImage: String,
-  @Json(name = "location") val location: String?,
-  @Json(name = "link") val link: String,
+  @SerialName("user_id") val id: Long,
+  @SerialName("display_name") val displayName: String,
+  @SerialName("profile_image") val profileImage: String,
+  @SerialName("location") val location: String?,
+  @SerialName("link") val link: String,
 )

@@ -2,17 +2,17 @@ package net.rafaeltoledo.sandbox.ui.screen.users
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.serialization.json.Json
 import net.rafaeltoledo.sandbox.data.StackOverflowApi
 import net.rafaeltoledo.sandbox.data.User
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.create
 
 class RepositoriesViewModel : ViewModel() {
@@ -38,13 +38,15 @@ class RepositoriesViewModel : ViewModel() {
       )
       .build()
 
-    val moshi = Moshi.Builder()
-      .add(KotlinJsonAdapterFactory()).build()
+    val json = Json {
+      ignoreUnknownKeys = true
+      explicitNulls = false
+    }
 
     val retrofit = Retrofit.Builder()
       .client(client)
       .baseUrl("https://api.stackexchange.com")
-      .addConverterFactory(MoshiConverterFactory.create(moshi))
+      .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
       .build()
 
     return retrofit.create()

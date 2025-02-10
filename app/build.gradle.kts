@@ -2,6 +2,7 @@ plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.android)
   alias(libs.plugins.kotlin.plugin.compose)
+  alias(libs.plugins.kotlin.plugin.serialization)
   alias(libs.plugins.lint.detekt)
   alias(libs.plugins.lint.spotless)
 }
@@ -49,6 +50,7 @@ spotless {
 
 dependencies {
   implementation(libs.kotlinx.coroutines.android)
+  implementation(libs.kotlinx.serialization.json)
 
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.appcompat)
@@ -68,8 +70,7 @@ dependencies {
   debugImplementation(libs.androidx.compose.ui.test.manifest)
 
   implementation(libs.retrofit)
-  implementation(libs.retrofit.moshi)
-  implementation(libs.moshi.kotlin)
+  implementation(libs.retrofit.kotlinx.serialization)
   implementation(libs.okhttp)
   implementation(libs.okhttp.logging)
   implementation(libs.conscrypt)
